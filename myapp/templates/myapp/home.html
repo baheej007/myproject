@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <style>
+        body {
+            background-color: #121212;  /* Dark background color */
+            color: #ffffff;  /* Light text color for contrast */
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            color: #ffffff;  /* White text for headings */
+        }
+
+        p {
+            color: #dddddd;  /* Light gray text for content */
+        }
+
+        img {
+            border: 2px solid #ffffff;  /* Optional: Add a border to images to contrast the dark background */
+        }
+    </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>4K WALLPAPPER</h1>
+     <form method="GET" action="{% url 'search_by_hashtag' %}">
+        <input type="text" name="q" placeholder="Search by hashtag">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+    {% for post in posts %}
+        <li>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+
+            <!-- Loop through all images associated with this post -->
+            <div>
+                {% for image in post.images.all %}
+                    <img src="{{ image.image.url }}" alt="{{ post.title }}" style="max-width: 300px;">
+                     <a href="{{ image.image.url }}">
+        <button class="download-button">Download</button>
+    </a>
+                {% endfor %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+   
+</body>
+</html>
